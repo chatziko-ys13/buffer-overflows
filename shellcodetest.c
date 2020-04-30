@@ -14,9 +14,9 @@ void main() {
 
 // run the shellcode by directly changing the return address
 void direct() {
-	int *ret;
-	ret = (int *)&ret + 2;		// hackish way of getting a pointer to the return address
-	(*ret) = (int)shellcode;	// set the return address to our code!
+	long *ret;
+	ret = (long *)&ret + 2;		// hackish way of getting a pointer to the return address
+	(*ret) = (long)shellcode;	// set the return address to our code!
 }
 
 // run the shellcode via overflow
@@ -31,7 +31,7 @@ void overflow() {
 	for (int i = 0; i < strlen(shellcode); i++)
 		large_string[i] = shellcode[i];
 
-	large_string[127] = 0;
+	large_string[sizeof(large_string)-1] = 0;
 
 	strcpy(buffer, large_string);
 }
