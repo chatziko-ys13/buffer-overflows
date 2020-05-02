@@ -1,11 +1,11 @@
 #include <unistd.h>
 
 void exec() {
-   char *name[2];
+   char *argv[2];
 
-   name[0] = "/bin/sh";
-   name[1] = NULL;
-   execve(name[0], name, NULL);
+   argv[0] = "/bin/sh";
+   argv[1] = NULL;
+   execve(argv[0], argv, NULL);
 
    _exit(0);
 }
