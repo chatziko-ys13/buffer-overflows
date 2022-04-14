@@ -1,6 +1,7 @@
 
 CFLAGS=-g -m32													# debug, 32bit code for simplicity, static link
 CFLAGS+=-fno-pie -mpreferred-stack-boundary=2 -fno-builtin		# produce simpler assembly, not important
+CFLAGS+=-fcf-protection=none									# no ROP protection. Needed only if we do ROP, but it's better to have simpler assembly anyway
 LDFLAGS=-static -m32											# static link, 32bit
 
 CFLAGS  += -fno-stack-protector		# no canaries, important!
